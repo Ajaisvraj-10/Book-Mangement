@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<p>Please enter your OTP</p>
+
+<form method="post">
+    {%csrf_token%}
+    <input type="text" name="otp"><br><br>
+    <input type="submit" value="verify">
+
+</form>
+
+
+
+{%for msg in messages%}
+
+<span style="color: red">{{msg}}</span>
+
+{%endfor%}
+
+
+
+{% endblock content %}

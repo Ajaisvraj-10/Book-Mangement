@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form method="post" enctype="multipart/form-data">
+
+  {% csrf_token %}
+  <h3>Bookname</h3>  <input  type="text" name="bookname" value="{{blog.Bookname}}"> <br><br>
+   <h3>Author</h3> <textarea name="author">{{blog.Author}}</textarea><br><br>
+    <h3>Price</h3><textarea name="price">{{blog.Price}}</textarea><br><br>
+    <input type="file" name="cover_image" accept="image/*"><br><br>
+   <input type="submit" value="Update">
+</form>
+
+{% endblock content %}
