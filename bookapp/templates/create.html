@@ -1,15 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="create-book">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="bookname">Book Name:</label>
+            <input type="text" name="bookname" required><br>
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label> Bookname :</label> <input  type="text" name="bookname"> <br>
-    <label> Author :</label><textarea name="author"></textarea>
-    <label> Price :</label><textarea name="price"></textarea>
-    <input type="file" name="cover_image" accept="image/*"><br>
-    <input type="submit" value="Add">
- 
+            <label for="author">Author:</label>
+            <textarea name="author" required></textarea><br>
 
-</form>
+            <label for="price">Price:</label>
+            <input type="text" name="price" required><br>
+
+            <label for="cover_image">Cover Image:</label>
+            <input type="file" name="cover_image" accept="image/*" required><br>
+
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <style>
+        .create-book {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
 {% endblock content %}

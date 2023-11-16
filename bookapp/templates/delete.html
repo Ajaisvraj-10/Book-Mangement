@@ -2,12 +2,60 @@
 
 {% block content %}
 
-<h2>Are you sure  you want to delete {{blog.Bookname}}?</h2>
+<div class="delete-confirmation">
+    <h2>Are you sure you want to delete "{{blog.Bookname}}"?</h2>
 
-<form method="post">
-    {%csrf_token%}
-    <input type="submit" name="confirm"> <br><br>
-    <a style="text-decoration: none;" href="{% url 'home' %}">Cancel</a>
-   
-</form>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="confirm">Confirm Delete</button><br><br>
+        <a href="{% url 'home' %}" class="cancel-link">Cancel</a>
+    </form>
+</div>
+
+<style>
+    .delete-confirmation {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #e74c3c;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    button {
+        background-color: #e74c3c;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #c0392b;
+    }
+
+    .cancel-link {
+        text-decoration: none;
+        color: #3498db;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    .cancel-link:hover {
+        color: #2980b9;
+    }
+</style>
+
 {% endblock content %}

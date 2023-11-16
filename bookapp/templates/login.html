@@ -1,18 +1,69 @@
-{% extends 'base.html' %} {% block content %}
-<form method="post">
-  {% csrf_token %}
+{% extends 'base.html' %}
 
-  <input type="text" name="username" /><br /><br />
-  <input type="password" name="password" /><br /><br />
-  <input type="submit" name="login" />
-</form>
+{% block content %}
+    <div class="login-form">
+        <form method="post">
+            {% csrf_token %}
 
-<a style="text-decoration: none;" href="{% url 'forgot' %}">Forgot Password ?</a>
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br /><br />
 
-{%for msg in messages%}
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br /><br />
 
-<span style="color: red">{{msg}}</span>
+            <button type="submit" name="login">Login</button>
+        </form>
 
-{%endfor%} 
+        <a href="{% url 'forgot' %}" style="text-decoration: none; color: #3498db;">Forgot Password?</a>
 
+        {% for msg in messages %}
+            <span style="color: red">{{ msg }}</span>
+        {% endfor %}
+    </div>
+
+    <style>
+        .login-form {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
 {% endblock content %}

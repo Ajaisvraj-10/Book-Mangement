@@ -2,20 +2,69 @@
 
 {% block content %}
 
-<h3>Change Password</h3>
-<form method="post">
+<div class="forgot-password-form">
+    <h3>Change Password</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label>Username</label> <input type="text" name="username"><br><br>
+        <button type="submit" name="save">Save</button>
+    </form>
 
-    {%csrf_token%}
+    {% for msg in messages %}
+        <span style="color: red">{{ msg }}</span>
+    {% endfor %}
+</div>
 
-    <label>Username</label> <input type="text" name="username"><br><br>
-    <input type="submit" name="Save">
-</form>
+<style>
+    .forgot-password-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-{%for msg in messages%}
+    h3 {
+        margin-bottom: 20px;
+        color: #3498db;
+    }
 
-<span style="color: red">{{msg}}</span>
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 
-{%endfor%}
+    label {
+        margin-bottom: 10px;
+    }
 
+    input {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #2ecc71;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #27ae60;
+    }
+
+    span {
+        color: red;
+        margin-top: 10px;
+        display: block;
+    }
+</style>
 
 {% endblock content %}

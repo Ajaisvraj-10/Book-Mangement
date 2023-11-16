@@ -1,25 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="otp-verification">
+        <p>Please enter your OTP</p>
 
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="otp" placeholder="Enter OTP" required><br><br>
+            <button type="submit">Verify</button>
+        </form>
 
-<p>Please enter your OTP</p>
+        {% for msg in messages %}
+            <span style="color: red">{{ msg }}</span>
+        {% endfor %}
+    </div>
 
-<form method="post">
-    {%csrf_token%}
-    <input type="text" name="otp"><br><br>
-    <input type="submit" value="verify">
+    <style>
+        .otp-verification {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-</form>
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
 
+        form {
+            display: flex;
+            flex-direction: column;
+        }
 
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+        }
 
-{%for msg in messages%}
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-<span style="color: red">{{msg}}</span>
+        button:hover {
+            background-color: #2980b9;
+        }
 
-{%endfor%}
-
-
-
+        span {
+            color: red;
+        }
+    </style>
 {% endblock content %}

@@ -1,10 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="book-list">
+    {% for blog in blog %}
+        <div class="book-item">
+            <h1><a href="{% url 'details' blog.id %}">{{ blog.Bookname }}</a></h1>
+            <p>Author: {{ blog.Author }}</p>
+            <p>Price: {{ blog.Price }}</p>
+        </div>
+    {% endfor %}
+</div>
 
-{% for blog in blog %}
+<style>
+    .book-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-<h1><a style="text-decoration: none;" href="{% url 'details' blog.id %}">{{blog.Bookname}}</a></h1>
+    .book-item {
+        max-width: 300px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-{% endfor %}
+    h1 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        /* color: #3498db; */
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    .cover-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
+
 {% endblock content %}

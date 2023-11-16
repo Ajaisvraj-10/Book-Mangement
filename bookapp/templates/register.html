@@ -1,20 +1,79 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="registration-form">
+    <form method="post">
+        {% csrf_token %}
 
-<form method="post">
-    {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="name">First name:</label>
+            <input type="text" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="Confirm_password">Confirm Password:</label>
+            <input type="password" name="Confirm_password" class="form-control">
+        </div>
+        <button type="submit" name="Register" class="btn btn-primary">Register</button>
+    </form>
 
- <label>Username</label>   <input type="text" name="username"><br><br>
- <label>First name</label>   <input type="text" name="name"><br><br>
- <label>Password</label> <input type="password" name="password"><br><br>
- <label>Confirm Password</label>  <input type="password" name="Confirm_password"><br><br>
-      <input type="submit" name="Register"><br>
-</form>
+    {% for msg in messages %}
+        <span style="color: red;">{{ msg }}</span>
+    {% endfor %}
+</div>
 
-{%for msg in messages%}
+<style>
+    .registration-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
 
-   <span style="color: red;">{{msg}}</span>
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-{%endfor%}
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+
+    span {
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
 {% endblock content %}
